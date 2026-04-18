@@ -60,16 +60,16 @@ jobs:
           dotnet-version: 10.x
 
       - name: Restore dependencies
-        run: dotnet restore backend/ClubHub.sln
+        run: dotnet restore bbackend/src/ClubHub.slnx
 
       - name: Check formatting
-        run: dotnet format backend/ClubHub.sln --verify-no-changes --severity warn
+        run: dotnet format bbackend/src/ClubHub.slnx --verify-no-changes --severity warn
 
       - name: Install dotnet-outdated
         run: dotnet tool install --global dotnet-outdated-tool
 
       - name: Check for outdated packages
-        run: dotnet outdated backend/ClubHub.sln
+        run: dotnet outdated backend/src/ClubHub.slnx
         continue-on-error: true
 
   frontend:
