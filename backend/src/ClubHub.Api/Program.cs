@@ -1,45 +1,42 @@
 using ClubHub.Application;
-using ClubHub.Application.Interfaces;
 using ClubHub.Infrastructure;
-using ClubHub.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace ClubHub.Api;
 
-public partial class Program
+public class Program
 {
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
+	public static void Main(string[] args)
+	{
+		var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+		// Add services to the container.
 
-        builder.Services.AddInfrastructure(builder.Configuration);
-        builder.Services.AddApplication();
-        
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+		builder.Services.AddInfrastructure(builder.Configuration);
+		builder.Services.AddApplication();
 
-        var app = builder.Build();
+		builder.Services.AddControllers();
+		builder.Services.AddEndpointsApiExplorer();
+		builder.Services.AddSwaggerGen();
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                options.RoutePrefix = string.Empty;
-            });
-        }
+		var app = builder.Build();
 
-        app.UseHttpsRedirection();
+		// Configure the HTTP request pipeline.
+		if (app.Environment.IsDevelopment())
+		{
+			app.UseSwagger();
+			app.UseSwaggerUI(options => // UseSwaggerUI is called only in Development.
+			{
+				options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+				options.RoutePrefix = string.Empty;
+			});
+		}
 
-        app.UseAuthorization();
+		app.UseHttpsRedirection();
 
-        app.MapControllers();
+		app.UseAuthorization();
 
-        app.Run();
-    }
+		app.MapControllers();
+
+		app.Run();
+	}
 }

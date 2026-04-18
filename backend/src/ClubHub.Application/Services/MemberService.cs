@@ -8,6 +8,56 @@ namespace ClubHub.Application.Services;
 
 public class MemberService(IAppDbContext dbContext) : IMemberService
 {
+	public async Task<List<GetMemberDto>> GetAllMembers(CancellationToken cancellationToken)
+	{
+		return await GetMembersQuery().ToListAsync(cancellationToken);
+	}
+
+	public async Task<GetMemberDto?> GetMemberById(Guid id, CancellationToken cancellationToken)
+	{
+		return await GetMembersQuery().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+	}
+
+	public async Task<Guid> CreateMember(MemberBaseDto dto, CancellationToken cancellationToken)
+	{
+		var member = new Member
+		{
+			FirstName = dto.FirstName,
+			LastName = dto.LastName,
+			Email = dto.Email,
+			Phone = dto.Phone,
+			BirthDate = dto.BirthDate
+		};
+
+		dbContext.Members.Add(member);
+		await dbContext.SaveChangesAsync(cancellationToken);
+
+		return member.Id;
+	}
+
+	public async Task<bool> UpdateMember(Guid id, MemberBaseDto dto, CancellationToken cancellationToken)
+	{
+		var affected = await dbContext.Members
+			.Where(x => x.Id == id)
+			.ExecuteUpdateAsync(x => x
+				.SetProperty(y => y.FirstName, dto.FirstName)
+				.SetProperty(y => y.LastName, dto.LastName)
+				.SetProperty(y => y.Email, dto.Email)
+				.SetProperty(y => y.Phone, dto.Phone)
+				.SetProperty(y => y.BirthDate, dto.BirthDate), cancellationToken);
+
+		return affected > 0;
+	}
+
+	public async Task<bool> DeleteMember(Guid id, CancellationToken cancellationToken)
+	{
+		var affected = await dbContext.Members
+			.Where(x => x.Id == id)
+			.ExecuteDeleteAsync(cancellationToken);
+
+		return affected > 0;
+	}
+
 	private IQueryable<GetMemberDto> GetMembersQuery()
 	{
 		return dbContext.Members
@@ -33,55 +83,5 @@ public class MemberService(IAppDbContext dbContext) : IMemberService
 					Status = y.Status
 				})
 			});
-	}
-
-	public async Task<List<GetMemberDto>> GetAllMembers(CancellationToken cancellationToken)
-	{
-		return await GetMembersQuery().ToListAsync(cancellationToken);
-	}
-
-	public async Task<GetMemberDto?> GetMemberById(Guid id, CancellationToken cancellationToken)
-	{
-		return await GetMembersQuery().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
-	}
-
-	public async Task<Guid> CreateMember(MemberBaseDto dto, CancellationToken cancellationToken)
-	{
-		var member = new Member
-		{
-			FirstName = dto.FirstName,
-			LastName = dto.LastName,
-			Email = dto.Email,
-			Phone = dto.Phone,
-			BirthDate = dto.BirthDate,
-		};
-
-		dbContext.Members.Add(member);
-		await dbContext.SaveChangesAsync(cancellationToken);
-		
-		return member.Id;
-	}
-
-	public async Task<bool> UpdateMember(Guid id, MemberBaseDto dto, CancellationToken cancellationToken)
-	{
-		var affected = await dbContext.Members
-			.Where(x => x.Id == id)
-			.ExecuteUpdateAsync(x => x
-				.SetProperty(y => y.FirstName, dto.FirstName)
-				.SetProperty(y => y.LastName, dto.LastName)
-				.SetProperty(y => y.Email, dto.Email)
-				.SetProperty(y => y.Phone, dto.Phone)
-				.SetProperty(y => y.BirthDate, dto.BirthDate), cancellationToken);
-		
-		return affected > 0;
-	}
-
-	public async Task<bool> DeleteMember(Guid id, CancellationToken cancellationToken)
-	{
-		var affected = await dbContext.Members
-			.Where(x => x.Id == id)
-			.ExecuteDeleteAsync(cancellationToken);
-		
-		return affected > 0;
 	}
 }

@@ -1,6 +1,6 @@
 <Solution>
-  <Project Path="ClubHub.Api/ClubHub.Api.csproj" />
-  <Project Path="ClubHub.Application/ClubHub.Application.csproj" />
-  <Project Path="ClubHub.Domain/ClubHub.Domain.csproj" />
-  <Project Path="ClubHub.Infrastructure/ClubHub.Infrastructure.csproj" />
+    <Project Path="ClubHub.Api/ClubHub.Api.csproj"/>
+    <Project Path="ClubHub.Application/ClubHub.Application.csproj"/>
+    <Project Path="ClubHub.Domain/ClubHub.Domain.csproj"/>
+    <Project Path="ClubHub.Infrastructure/ClubHub.Infrastructure.csproj"/>
 </Solution>
