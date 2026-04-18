@@ -1,9 +1,10 @@
+using ClubHub.Application.Interfaces;
 using ClubHub.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClubHub.Infrastructure.Data;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options), IAppDbContext
 {
     public DbSet<Member> Members => Set<Member>();
     public DbSet<SeasonCard> SeasonCards => Set<SeasonCard>();

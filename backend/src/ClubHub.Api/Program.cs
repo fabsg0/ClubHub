@@ -1,3 +1,6 @@
+using ClubHub.Application;
+using ClubHub.Application.Interfaces;
+using ClubHub.Infrastructure;
 using ClubHub.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +14,8 @@ public partial class Program
 
         // Add services to the container.
 
-        builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddInfrastructure(builder.Configuration);
+        builder.Services.AddApplication();
         
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
