@@ -1,3 +1,66 @@
-bin/
-obj/
+# ------------------------------------------------------------
+# ASP.NET Core / .NET
+# ------------------------------------------------------------
+backend/**/bin/
+backend/**/obj/
+backend/**/*.user
+backend/**/*.suo
+backend/**/.vs/
+backend/**/appsettings.Development.json
+backend/**/appsettings.Production.json
+
+# Entity Framework migrations (keep the folder, ignore nothing —
+# migrations should be committed, but exclude local snapshots if needed)
+# backend/**/Migrations/
+
+# Publish output
+backend/**/publish/
+backend/**/*.nupkg
+
+# ------------------------------------------------------------
+# SvelteKit / Node
+# ------------------------------------------------------------
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Cloudflare
+frontend/.wrangler/
+
+# ------------------------------------------------------------
+# Environment & Secrets (root level)
+# ------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# ------------------------------------------------------------
+# Docker
+# ------------------------------------------------------------
+docker-compose.override.yml
+
+# ------------------------------------------------------------
+# IDEs & Editors
+# ------------------------------------------------------------
+.vs/
+.vscode/
 .idea/
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------
+# OS
+# ------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------
+# Logs
+# ------------------------------------------------------------
+*.log
+logs/
