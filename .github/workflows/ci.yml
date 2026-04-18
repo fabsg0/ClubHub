@@ -33,16 +33,16 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
 
       - name: Restore dependencies
-        run: dotnet restore backend/ClubHub.sln
+        run: dotnet restore backend/ClubHub.slnx
 
       - name: Build
-        run: dotnet build backend/ClubHub.sln --no-restore --configuration Release
+        run: dotnet build backend/ClubHub.slnx --no-restore --configuration Release
 
       - name: Run tests
-        run: dotnet test backend/ClubHub.sln --no-build --configuration Release --verbosity normal
+        run: dotnet test backend/ClubHub.slnx --no-build --configuration Release --verbosity normal
         env:
           ConnectionStrings__Default: "Host=localhost;Port=5432;Database=clubhub_test;Username=clubhub_user;Password=testpassword"
 
@@ -57,7 +57,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
 
       - name: Restore dependencies
         run: dotnet restore backend/ClubHub.sln
