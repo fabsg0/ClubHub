@@ -1,4 +1,5 @@
 # ClubHub
+[![CI](https://github.com/fabsg0/ClubHub/actions/workflows/ci.yml/badge.svg)](https://github.com/fabsg0/ClubHub/actions/workflows/ci.yml)
  
 > All-in-one club management system — member & season pass management, NFC-based point-of-sale, and gate entry control for sports clubs.
  
