@@ -13,7 +13,7 @@ public class SeasonCard
 
 	[Required] public Guid MemberId { get; set; }
 
-	[Required] [MaxLength(100)] public string NfcKey { get; set; } = string.Empty;
+	[Required][MaxLength(100)] public string NfcKey { get; set; } = string.Empty;
 
 	/// <summary>
 	///     Paid in cents
@@ -29,7 +29,7 @@ public class SeasonCard
 
 	[Required] public DateOnly ValidUntil { get; set; }
 
-	[Required] [MaxLength(20)] public CardStatus Status { get; set; } = CardStatus.Active;
+	[Required][MaxLength(20)] public CardStatus Status { get; set; } = CardStatus.Active;
 
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public DateTime CreatedAt { get; set; }

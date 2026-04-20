@@ -14,7 +14,7 @@ public class TransactionItem
 
 	[Required] public Guid ProductId { get; set; }
 
-	[Required] [Range(1, int.MaxValue)] public int Quantity { get; set; } = 1;
+	[Required][Range(1, int.MaxValue)] public int Quantity { get; set; } = 1;
 
 	/// <summary>Price snapshot at time of purchase</summary>
 	[Required]

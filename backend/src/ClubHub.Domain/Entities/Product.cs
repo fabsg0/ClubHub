@@ -12,7 +12,7 @@ public class Product
 
 	[Required] public Guid ProductCategoryId { get; set; }
 
-	[Required] [MaxLength(150)] public string Name { get; set; } = string.Empty;
+	[Required][MaxLength(150)] public string Name { get; set; } = string.Empty;
 
 	/// <summary>Price in cents, e.g. 250 = €2.50</summary>
 	[Required]

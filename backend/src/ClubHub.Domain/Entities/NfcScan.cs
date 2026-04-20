@@ -13,9 +13,9 @@ public class NfcScan
 
 	public Guid? SeasonCardId { get; set; }
 
-	[Required] [MaxLength(100)] public string RawNfcKey { get; set; } = string.Empty;
+	[Required][MaxLength(100)] public string RawNfcKey { get; set; } = string.Empty;
 
-	[Required] [MaxLength(20)] public ScanType ScanType { get; set; }
+	[Required][MaxLength(20)] public ScanType ScanType { get; set; }
 
 	[Required] public bool Granted { get; set; }
 

@@ -11,17 +11,17 @@ public class OnlineOrder
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public Guid Id { get; set; }
 
-	[Required] [MaxLength(100)] public string FirstName { get; set; } = string.Empty;
+	[Required][MaxLength(100)] public string FirstName { get; set; } = string.Empty;
 
-	[Required] [MaxLength(100)] public string LastName { get; set; } = string.Empty;
+	[Required][MaxLength(100)] public string LastName { get; set; } = string.Empty;
 
-	[Required] [MaxLength(255)] public string Email { get; set; } = string.Empty;
+	[Required][MaxLength(255)] public string Email { get; set; } = string.Empty;
 
 	/// <summary>Amount paid in cents</summary>
 	[Required]
 	public int AmountPaid { get; set; }
 
-	[Required] [MaxLength(20)] public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Pending;
+	[Required][MaxLength(20)] public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.Pending;
 
 	[MaxLength(255)] public string? StripeSessionId { get; set; }
 
